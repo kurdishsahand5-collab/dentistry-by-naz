@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>نۆرە بگرە – کلینیکی ددانی ناز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcGxZIsAAAAAPN4iqBuc7GApq_VJ964-6Dikhs_"></script>
+  <style>
+    :root{--cream:#fdf8f2;--blush:#f5e6d8;--peach:#e8c4a0;--terra:#c47d5a;--brown:#7a4f35;--dark:#2e1f12;--sage:#8dab99;--sage-l:#c8ddd4;--mid:#6b4f3a;--light:#9a7a68;--white:#ffffff;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
+    nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(253,248,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
+    .logo span{color:var(--terra);font-style:italic;}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-links a{text-decoration:none;font-size:0.88rem;font-weight:600;color:var(--mid);transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--terra);}
+    .nav-cta{background:var(--terra);color:white;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;}
+    .lang-switcher{display:flex;align-items:center;background:var(--dark);border-radius:50px;padding:4px;gap:2px;}
+    .lang-btn{padding:6px 14px;border-radius:50px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s;color:rgba(255,255,255,0.5);}
+    .lang-btn.active{background:var(--terra);color:white;}
+    .lang-btn:hover{color:white;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
+    .mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
+    .mobile-close{position:absolute;top:24px;left:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
+    .mobile-lang{display:flex;gap:12px;margin-top:8px;}
+    .mobile-lang a{font-family:'DM Sans',sans-serif;font-size:1rem;background:var(--blush);color:var(--brown);padding:8px 20px;border-radius:50px;text-decoration:none;font-weight:600;}
+    .mobile-lang a.active{background:var(--terra);color:white;}
+
+```
+.booking-wrap{padding:120px 48px 80px;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;max-width:1100px;margin:0 auto;align-items:start;}
+.booking-info h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--dark);margin-bottom:16px;line-height:1.2;}
+.booking-info p{color:var(--mid);font-size:0.95rem;line-height:1.8;margin-bottom:32px;}
+.info-cards{display:flex;flex-direction:column;gap:14px;}
+.info-card{background:var(--white);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:16px;border:1px solid var(--blush);}
+.ic-icon{width:42px;height:42px;border-radius:12px;background:var(--blush);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.ic-label{font-size:0.72rem;font-weight:600;color:var(--light);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:2px;}
+.ic-val{font-size:0.9rem;font-weight:500;color:var(--dark);}
+.trust-row{display:flex;gap:12px;margin-top:20px;}
+.trust-item{text-align:center;flex:1;background:var(--blush);border-radius:14px;padding:12px 8px;}
+.trust-n{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--terra);}
+.trust-l{font-size:0.68rem;color:var(--mid);}
+.security-badge{background:var(--sage-l);border-radius:16px;padding:14px 18px;margin-top:16px;display:flex;align-items:flex-start;gap:12px;font-size:0.83rem;color:var(--brown);line-height:1.6;}
+.booking-form{background:var(--white);border-radius:32px;padding:44px;box-shadow:0 16px 56px rgba(122,79,53,0.1);}
+.booking-form h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--dark);margin-bottom:6px;}
+.sub{font-size:0.85rem;color:var(--light);margin-bottom:28px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fg{margin-bottom:18px;}
+.fg label{display:block;font-size:0.75rem;font-weight:600;color:var(--mid);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 15px;border:1.5px solid var(--peach);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--dark);background:var(--cream);outline:none;transition:all 0.2s;-webkit-appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--terra);background:var(--white);box-shadow:0 0 0 3px rgba(196,125,90,0.08);}
+.fg textarea{resize:none;height:88px;}
+.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.svc-opt{background:var(--cream);border:1.5px solid var(--peach);border-radius:11px;padding:11px 13px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:9px;font-size:0.83rem;color:var(--mid);}
+.svc-opt:hover,.svc-opt.selected{background:var(--blush);border-color:var(--terra);color:var(--brown);font-weight:600;}
+.recaptcha-note{font-size:0.75rem;color:var(--light);text-align:center;margin:12px 0;line-height:1.6;}
+.recaptcha-note a{color:var(--terra);text-decoration:none;}
+.submit-btn{width:100%;padding:15px;background:var(--terra);color:white;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all 0.25s;margin-top:6px;}
+.submit-btn:hover{background:var(--brown);transform:translateY(-2px);}
+.submit-btn:disabled{background:var(--peach);cursor:not-allowed;transform:none;}
+.error-msg{background:#fee2e2;color:#991b1b;border-radius:10px;padding:11px 15px;font-size:0.83rem;margin-top:10px;display:none;}
+.error-msg.show{display:block;}
+.success-screen{display:none;text-align:center;padding:16px 0;}
+.success-screen.show{display:block;}
+.success-emoji{font-size:3.5rem;margin-bottom:16px;}
+.success-screen h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--dark);margin-bottom:10px;}
+.success-screen p{color:var(--mid);font-size:0.92rem;line-height:1.7;margin-bottom:6px;}
+.ref-num{font-weight:700;color:var(--terra);font-size:1rem;margin:10px 0;background:var(--blush);padding:10px;border-radius:10px;}
+.success-screen a{background:var(--terra);color:white;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.88rem;display:inline-block;margin-top:14px;}
+.privacy-note{font-size:0.76rem;color:var(--light);text-align:center;margin-top:14px;line-height:1.6;}
+.privacy-note a{color:var(--terra);text-decoration:none;}
+.wa-btn{position:fixed;bottom:28px;left:28px;z-index:500;background:#25d366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;transition:all 0.3s;}
+.wa-btn:hover{transform:scale(1.1);}
+footer{background:#1a0f08;color:rgba(255,255,255,0.5);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.83rem;}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
+.foot-brand span{color:var(--terra);font-style:italic;}
+@media(max-width:900px){
+  nav{padding:16px 20px;}.nav-links{display:none;}.hamburger{display:flex;}
+  .booking-wrap{grid-template-columns:1fr;padding:100px 20px 60px;gap:36px;}
+  .booking-form{padding:24px 18px;}.form-row{grid-template-columns:1fr;}.service-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:10px;padding:18px;text-align:center;}
+}
+```
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index-ckb.html" class="logo">کلینیکی ددانی <span>ناز</span></a>
+  <ul class="nav-links">
+    <li><a href="index-ckb.html">سەرەکی</a></li>
+    <li><a href="services-ckb.html">خزمەتگوزارییەکان</a></li>
+    <li><a href="gallery-ckb.html">گەلەری</a></li>
+    <li><a href="about-ckb.html">دەربارە</a></li>
+    <li><a href="contact-ckb.html">پەیوەندی</a></li>
+    <li><a href="booking-ckb.html" class="nav-cta active">نۆرە بگرە</a></li>
+    <div class="lang-switcher">
+      <a href="booking-ckb.html" class="lang-btn active">🇮🇶 کوردی</a>
+      <a href="booking.html" class="lang-btn">🇬🇧 EN</a>
+    </div>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="index-ckb.html">سەرەکی</a>
+  <a href="services-ckb.html">خزمەتگوزارییەکان</a>
+  <a href="gallery-ckb.html">گەلەری</a>
+  <a href="about-ckb.html">دەربارە</a>
+  <a href="contact-ckb.html">پەیوەندی</a>
+  <a href="booking-ckb.html">نۆرە بگرە</a>
+  <div class="mobile-lang">
+    <a href="booking-ckb.html" class="active">🇮🇶 کوردی</a>
+    <a href="booking.html">🇬🇧 English</a>
+  </div>
+</div>
+
+<div class="booking-wrap">
+  <div class="booking-info">
+    <div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:20px;">نۆرە بگرە</div>
+    <h1>با کاتێک بۆ خەندەکەت دابنێین</h1>
+    <p>فۆڕمەکە پڕبکەرەوە و لە ماوەی ٢ کاتژمێری کارکردندا نۆرەکەت پشتڕاست دەکەینەوە.</p>
+    <div class="info-cards">
+      <div class="info-card"><div class="ic-icon">📍</div><div><div class="ic-label">ناونیشان</div><div class="ic-val">123 شەقامی سەرەکی، سلیمانی</div></div></div>
+      <div class="info-card"><div class="ic-icon">📞</div><div><div class="ic-label">تەلەفۆن</div><div class="ic-val">(555) 012-3456</div></div></div>
+      <div class="info-card"><div class="ic-icon">🕐</div><div><div class="ic-label">کاتەکانی کارکردن</div><div class="ic-val">دووشەممە–هەینی 8am–6pm · شەممە 9am–2pm</div></div></div>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><div class="trust-n">+3K</div><div class="trust-l">نەخۆش</div></div>
+      <div class="trust-item"><div class="trust-n">5★</div><div class="trust-l">هەڵسەنگاندن</div></div>
+      <div class="trust-item"><div class="trust-n">+12</div><div class="trust-l">ساڵ ئەزموون</div></div>
+    </div>
+    <div class="security-badge">🔒 <div><strong style="display:block;margin-bottom:2px;">داتاکانت پارێزراون و کۆدکراون</strong>ئێمە هەرگیز زانیارییەکانت بڵاوناکەینەوە. <a href="privacy.html" style="color:var(--terra);">سیاسەتی تایبەتمەندێتی ←</a></div></div>
+  </div>
+
+  <div class="booking-form">
+    <div id="form-section">
+      <h2>داواکردنی نۆرە</h2>
+      <p class="sub">بوارە دیاریکراوەکان بە * پێویستن. لە ماوەی ٢ کاتژمێردا وەڵام دەدەینەوە.</p>
+      <div class="form-row">
+        <div class="fg"><label>ناوی یەکەم *</label><input type="text" id="fname" placeholder="ناوی یەکەم"/></div>
+        <div class="fg"><label>ناوی کۆتایی *</label><input type="text" id="lname" placeholder="ناوی کۆتایی"/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>ژمارە تەلەفۆن *</label><input type="tel" id="phone" placeholder="0770 000 0000"/></div>
+        <div class="fg"><label>ئیمەیڵ</label><input type="email" id="email" placeholder="your@email.com"/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>بەرواری دڵخواز *</label><input type="date" id="pdate"/></div>
+        <div class="fg"><label>کاتی دڵخواز *</label>
+          <select id="ptime">
+            <option value="">کات هەڵبژێرە</option>
+            <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option>
+            <option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option>
+            <option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>خزمەتگوزاری هەڵبژێرە *</label>
+        <div class="service-grid">
+          <div class="svc-opt" onclick="selectService(this,'General Check-up')">🪥 پشکنینی گشتی</div>
+          <div class="svc-opt" onclick="selectService(this,'Teeth Whitening')">✨ سپیکردنەوەی ددان</div>
+          <div class="svc-opt" onclick="selectService(this,'Cosmetic Dentistry')">😁 ددانسازی جوانکاری</div>
+          <div class="svc-opt" onclick="selectService(this,'Dental Implants')">🦴 چاندنی ددان</div>
+          <div class="svc-opt" onclick="selectService(this,'Orthodontics')">😬 ڕاستکردنەوەی ددان</div>
+          <div class="svc-opt" onclick="selectService(this,'Emergency Care')">🚨 چاودێری کتوپڕ</div>
+        </div>
+      </div>
+      <div class="fg"><label>یەکەم سەردانتە؟</label>
+        <select id="firstvisit">
+          <option value="Yes, first time patient">بەڵێ، نەخۆشی نوێم</option>
+          <option value="No, I've been here before">نەخێر، پێشتر هاتووم</option>
+        </select>
+      </div>
+      <div class="fg"><label>تێبینییەکان (ئارەزوومەندانە)</label><textarea id="notes" placeholder="هەر تێبینییەک، حەساسیەتێک، یان داواکارییەکی تایبەت..."></textarea></div>
+
+```
+  <p class="recaptcha-note">🔒 پارێزراوە بە Google reCAPTCHA · <a href="https://policies.google.com/privacy" target="_blank">تایبەتمەندێتی</a> · <a href="https://policies.google.com/terms" target="_blank">مەرجەکان</a></p>
+
+  <button class="submit-btn" id="submitBtn" onclick="submitForm()">پشتڕاستکردنەوەی داواکاری نۆرە ←</button>
+  <div class="error-msg" id="errorMsg"></div>
+  <p class="privacy-note">بە ناردنی ئەم فۆڕمە، تۆ ڕازی دەبیت بە <a href="privacy.html">سیاسەتی تایبەتمەندێتی</a> ئێمە. داتاکانت پارێزراون.</p>
+</div>
+
+<div class="success-screen" id="success">
+  <div class="success-emoji">🎉</div>
+  <h3>نۆرەکەت وەرگیرا!</h3>
+  <p>داواکاری نۆرەکەت بە سەرکەوتوویی لە سیستەمەکەماندا پاشەکەوت کرا.</p>
+  <div class="ref-num" id="refNum"></div>
+  <p>لە ماوەی ٢ کاتژمێردا پەیوەندیت پێوە دەکەین بۆ پشتڕاستکردنەوە. بەم زووانە دەتبینین! 😊</p>
+  <a href="index-ckb.html">گەڕانەوە بۆ سەرەتا</a>
+</div>
+```
+
+  </div>
+</div>
+
+<footer>
+  <div class="foot-brand">کلینیکی ددانی <span>ناز</span></div>
+  <div style="color:rgba(255,255,255,0.3);font-size:0.78rem;">© 2026 کلینیکی ددانی ناز · <a href="privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">سیاسەتی تایبەتمەندێتی</a></div>
+</footer>
+<a href="https://wa.me/15550123456" target="_blank" class="wa-btn">💬</a>
+
+<script>
+const SUPABASE_URL='https://cnvurcbfdyjriiwsqhgp.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNudnVyY2JmZHlqcmlpd3NxaGdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxMTU1NDIsImV4cCI6MjA4OTY5MTU0Mn0.AUEhyX3AnTecZ8-TKCsoA3mD4I57c1xM5HTD-v4n128';
+const RECAPTCHA_SITE_KEY='6LcGxZIsAAAAAPN4iqBuc7GApq_VJ964-6Dikhs_';
+const{createClient}=supabase;
+const db=createClient(SUPABASE_URL,SUPABASE_KEY);
+let selectedService='';
+
+function selectService(el,name){
+  document.querySelectorAll('.svc-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedService=name;
+}
+
+async function submitForm(){
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const pdate=document.getElementById('pdate').value;
+  const ptime=document.getElementById('ptime').value;
+  const firstvisit=document.getElementById('firstvisit').value;
+  const notes=document.getElementById('notes').value.trim();
+  const errEl=document.getElementById('errorMsg');
+
+  if(!fname||!lname||!phone||!pdate||!ptime||!selectedService){
+    errEl.textContent='تکایە هەموو بوارە داواکراوەکان پڕبکەرەوە و خزمەتگوزارییەک هەڵبژێرە.';
+    errEl.classList.add('show');return;
+  }
+  errEl.classList.remove('show');
+
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='پشتڕاستکردن و پاشەکەوتکردن...';
+
+  try{
+    // reCAPTCHA v3 — invisible protection
+    const captchaToken=await grecaptcha.execute(RECAPTCHA_SITE_KEY,{action:'submit_booking'});
+    if(!captchaToken)throw new Error('پشتڕاستکردنەوەی reCAPTCHA شکستی هێنا.');
+
+    const{data,error}=await db.from('appointments').insert([{
+      first_name:fname,last_name:lname,phone:phone,
+      email:email||null,preferred_date:pdate,preferred_time:ptime,
+      service:selectedService,first_visit:firstvisit,
+      notes:notes||null,status:'pending'
+    }]).select();
+    if(error)throw error;
+
+    const refId=data[0].id.substring(0,8).toUpperCase();
+    document.getElementById('refNum').textContent='ژمارەی داواکاری: #'+refId;
+    document.getElementById('form-section').style.display='none';
+    document.getElementById('success').classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+
+  }catch(err){
+    console.error(err);
+    errEl.textContent='هەڵەیەک ڕوویدا. تکایە پەیوەندیمان پێوە بکە بە (555) 012-3456 یان دووبارە هەوڵبدەرەوە.';
+    errEl.classList.add('show');
+    btn.disabled=false;
+    btn.textContent='پشتڕاستکردنەوەی داواکاری نۆرە ←';
+  }
+}
+</script>
+
+</body>
+</html>
