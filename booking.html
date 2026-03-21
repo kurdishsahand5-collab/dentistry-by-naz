@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -6,6 +7,8 @@
   <title>Book Appointment – Dentistry by Naz</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- ✅ reCAPTCHA script added here -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     :root{--cream:#fdf8f2;--blush:#f5e6d8;--peach:#e8c4a0;--terra:#c47d5a;--brown:#7a4f35;--dark:#2e1f12;--sage:#8dab99;--sage-l:#c8ddd4;--mid:#6b4f3a;--light:#9a7a68;--white:#ffffff;}
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -49,6 +52,8 @@
     .svc-opt:hover,.svc-opt.selected{background:var(--blush);border-color:var(--terra);color:var(--brown);}
     .svc-opt.selected{font-weight:600;}
     .svc-opt-icon{font-size:1.1rem;}
+    /* ✅ reCAPTCHA styling */
+    .recaptcha-wrap{margin:20px 0;display:flex;justify-content:center;}
     .submit-btn{width:100%;padding:16px;background:var(--terra);color:white;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.25s;margin-top:8px;}
     .submit-btn:hover{background:var(--brown);transform:translateY(-2px);}
     .submit-btn:disabled{background:var(--peach);cursor:not-allowed;transform:none;}
@@ -69,6 +74,7 @@
       nav{padding:16px 20px;}.nav-links{display:none;}.hamburger{display:flex;}
       .booking-wrap{grid-template-columns:1fr;padding:100px 20px 60px;gap:40px;}
       .booking-form{padding:28px 20px;}.form-row{grid-template-columns:1fr;}.service-grid{grid-template-columns:1fr;}
+      .recaptcha-wrap .g-recaptcha{transform:scale(0.88);transform-origin:center;}
       footer{flex-direction:column;gap:12px;padding:20px;text-align:center;}
     }
   </style>
@@ -140,17 +146,26 @@
         <select id="firstvisit"><option>Yes, first time patient</option><option>No, I've been here before</option></select>
       </div>
       <div class="fg"><label>Additional Notes</label><textarea id="notes" placeholder="Any concerns, allergies, or special requests..."></textarea></div>
-      <button class="submit-btn" id="submitBtn" onclick="submitForm()">Confirm Appointment Request →</button>
-      <div class="error-msg" id="errorMsg"></div>
-    </div>
-    <div class="success-screen" id="success">
-      <div class="success-emoji">🎉</div>
-      <h3>Appointment Requested!</h3>
-      <p>Thank you! We've received your request and will confirm within 2 hours.</p>
-      <div class="ref-num" id="refNum"></div>
-      <p>We look forward to seeing you! 😊</p>
-      <a href="index.html">Back to Home</a>
-    </div>
+
+```
+  <!-- ✅ Google reCAPTCHA widget - placed above submit button -->
+  <div class="recaptcha-wrap">
+    <div class="g-recaptcha" data-sitekey="6LcGxZIsAAAAAPN4iqBuc7GApq_VJ964-6Dikhs_"></div>
+  </div>
+
+  <button class="submit-btn" id="submitBtn" onclick="submitForm()">Confirm Appointment Request →</button>
+  <div class="error-msg" id="errorMsg"></div>
+</div>
+<div class="success-screen" id="success">
+  <div class="success-emoji">🎉</div>
+  <h3>Appointment Requested!</h3>
+  <p>Thank you! We've received your request and will confirm within 2 hours.</p>
+  <div class="ref-num" id="refNum"></div>
+  <p>We look forward to seeing you! 😊</p>
+  <a href="index.html">Back to Home</a>
+</div>
+```
+
   </div>
 </div>
 
@@ -183,12 +198,21 @@ async function submitForm() {
   const selected = document.querySelector('.svc-opt.selected');
   const errEl = document.getElementById('errorMsg');
 
+  // ✅ Check reCAPTCHA first
+  const captchaResponse = grecaptcha.getResponse();
+  if (!captchaResponse) {
+    errEl.textContent = '🤖 Please complete the "I\'m not a robot" verification below.';
+    errEl.classList.add('show');
+    return;
+  }
+
   if (!fname || !lname || !phone || !pdate || !ptime || !selected) {
     errEl.textContent = 'Please fill in all required fields and select a service.';
     errEl.classList.add('show');
     return;
   }
   errEl.classList.remove('show');
+
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Saving your appointment...';
@@ -219,10 +243,12 @@ async function submitForm() {
     console.error('Supabase error:', err);
     errEl.textContent = 'Something went wrong: ' + (err.message || 'Please try again.');
     errEl.classList.add('show');
+    grecaptcha.reset(); // ✅ Reset captcha on error so user can try again
     btn.disabled = false;
     btn.textContent = 'Confirm Appointment Request →';
   }
 }
 </script>
+
 </body>
 </html>
