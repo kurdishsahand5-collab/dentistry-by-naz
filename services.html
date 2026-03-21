@@ -62,8 +62,11 @@
       .svc-row{grid-template-columns:1fr;gap:28px;}
       .svc-row.reverse{direction:ltr;}
       footer{flex-direction:column;gap:16px;padding:28px 20px;text-align:center;}
-      footer a{margin:0 8px;}
-    }
+      footer a{margin:0 .lang-switcher{display:flex;align-items:center;background:#2e1f12;border-radius:50px;padding:4px;gap:2px;}
+.lang-btn{padding:6px 14px;border-radius:50px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s;color:rgba(255,255,255,0.5);}
+.lang-btn.active{background:#c47d5a;color:white;}
+.lang-btn:hover{color:white;}
+ }
   </style>
 </head>
 <body>
@@ -74,6 +77,11 @@
     <li><a href="services.html" class="active">Services</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="about.html">About</a></li>
+    <div class="lang-switcher">
+  <a href="services.html" class="lang-btn active">🇬🇧 EN</a>
+  <a href="services-ckb.html" class="lang-btn">🇮🇶 کوردی</a>
+</div>
+
     <li><a href="contact.html">Contact</a></li>
     <li><a href="booking.html" class="nav-cta">Book Now</a></li>
   </ul>
