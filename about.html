@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About – Dentistry by Naz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--cream:#fdf8f2;--blush:#f5e6d8;--peach:#e8c4a0;--terra:#c47d5a;--brown:#7a4f35;--dark:#2e1f12;--sage:#8dab99;--sage-l:#c8ddd4;--mid:#6b4f3a;--light:#9a7a68;--white:#ffffff;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
+    nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(253,248,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
+    .logo span{color:var(--terra);font-style:italic;}
+    .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+    .nav-links a{text-decoration:none;font-size:0.88rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--terra);}
+    .nav-cta{background:var(--terra);color:white;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
+    .mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
+    .mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
+
+    .page-hero{padding:140px 48px 80px;background:linear-gradient(135deg,var(--blush),var(--cream));text-align:center;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--dark);margin-bottom:16px;}
+    .page-hero p{color:var(--mid);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.7;}
+
+    .about-main{padding:80px 48px;display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:center;max-width:1100px;margin:0 auto;}
+    .about-visual{position:relative;}
+    .doc-img{width:100%;height:440px;border-radius:120px 120px 80px 80px;background:linear-gradient(160deg,var(--blush),var(--peach));display:flex;align-items:center;justify-content:center;font-size:8rem;}
+    .doc-badge{position:absolute;bottom:20px;right:-16px;background:var(--brown);color:white;border-radius:20px;padding:16px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+    .doc-badge-n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;display:block;}
+    .doc-badge-l{font-size:0.72rem;opacity:0.75;margin-top:2px;display:block;}
+    .about-text h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--dark);margin-bottom:18px;line-height:1.2;}
+    .about-text p{color:var(--mid);font-size:0.95rem;line-height:1.85;margin-bottom:16px;}
+    .quals{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0;}
+    .qual{background:var(--sage-l);color:var(--brown);font-size:0.8rem;font-weight:600;padding:7px 14px;border-radius:50px;}
+
+    .stats-band{background:var(--dark);padding:60px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+    .stat-item .n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--terra);}
+    .stat-item .l{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:4px;}
+
+    .team{padding:80px 48px;background:var(--white);}
+    .team h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--dark);text-align:center;margin-bottom:48px;}
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:900px;margin:0 auto;}
+    .team-card{text-align:center;}
+    .team-av{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--blush),var(--peach));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;}
+    .team-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--dark);margin-bottom:4px;}
+    .team-role{font-size:0.8rem;color:var(--light);font-weight:500;}
+
+    .values{padding:80px 48px;background:linear-gradient(135deg,var(--blush),var(--cream));}
+    .values h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--dark);text-align:center;margin-bottom:48px;}
+    .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto;}
+    .val-card{background:var(--white);border-radius:24px;padding:32px;text-align:center;}
+    .val-icon{font-size:2.2rem;margin-bottom:16px;}
+    .val-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:10px;}
+    .val-card p{font-size:0.87rem;color:var(--light);line-height:1.7;}
+
+    .cta-band{padding:80px 48px;text-align:center;background:var(--terra);}
+    .cta-band h2{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:white;margin-bottom:16px;}
+    .cta-band p{color:rgba(255,255,255,0.8);margin-bottom:32px;font-size:1rem;}
+    .btn-white{background:white;color:var(--terra);padding:14px 32px;border-radius:50px;font-weight:700;font-size:0.95rem;text-decoration:none;display:inline-block;transition:all 0.2s;}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+
+    footer{background:#1a0f08;color:rgba(255,255,255,0.5);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
+    .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
+    .foot-brand span{color:var(--terra);font-style:italic;}
+    footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin-left:24px;transition:color 0.2s;}
+    footer a:hover{color:var(--terra);}
+    .wa-btn{position:fixed;bottom:28px;right:28px;z-index:500;background:#25d366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;transition:all 0.3s;}
+    .wa-btn:hover{transform:scale(1.1);}
+
+    @media(max-width:900px){
+      nav{padding:16px 20px;}
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .page-hero{padding:110px 20px 60px;}
+      .page-hero h1{font-size:2.5rem;}
+      .about-main{grid-template-columns:1fr;padding:60px 20px;gap:40px;}
+      .stats-band{grid-template-columns:repeat(2,1fr);padding:48px 20px;}
+      .team{padding:60px 20px;}
+      .team-grid{grid-template-columns:1fr;}
+      .values{padding:60px 20px;}
+      .val-grid{grid-template-columns:1fr;}
+      .cta-band{padding:60px 20px;}
+      footer{flex-direction:column;gap:16px;padding:24px 20px;text-align:center;}
+      footer a{margin:0 8px;}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Dentistry <span>by Naz</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="booking.html">Book Now</a>
+</div>
+
+<div class="page-hero">
+  <div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:20px;">About Us</div>
+  <h1>The heart behind the smiles</h1>
+  <p>We're more than a dental clinic — we're a team that genuinely cares about your wellbeing and comfort.</p>
+</div>
+
+<div class="about-main">
+  <div class="about-visual">
+    <div class="doc-img">👩‍⚕️</div>
+    <div class="doc-badge"><span class="doc-badge-n">Dr. Naz</span><span class="doc-badge-l">BDS · MSc · 12 Years Experience</span></div>
+  </div>
+  <div class="about-text">
+    <div style="display:inline-block;font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:12px;">Meet the Doctor</div>
+    <h2>Passionate about your smile since 2012</h2>
+    <p>Dr. Naz founded this clinic with a simple mission: to make quality dental care accessible, comfortable, and even enjoyable. After completing her dental degree and a master's in cosmetic dentistry, she spent years perfecting a patient-first approach that puts comfort above everything else.</p>
+    <p>She strongly believes that a healthy smile changes lives — and she's dedicated to helping every patient achieve the confidence that comes with it.</p>
+    <div class="quals">
+      <span class="qual">BDS Degree</span>
+      <span class="qual">MSc Cosmetic Dentistry</span>
+      <span class="qual">Invisalign Certified</span>
+      <span class="qual">Implant Specialist</span>
+      <span class="qual">Child Dentistry Trained</span>
+    </div>
+    <a href="booking.html" style="background:var(--terra);color:white;padding:12px 28px;border-radius:50px;font-weight:600;font-size:0.9rem;text-decoration:none;display:inline-block;">Book with Dr. Naz →</a>
+  </div>
+</div>
+
+<div class="stats-band">
+  <div class="stat-item"><div class="n">3,000+</div><div class="l">Happy Patients</div></div>
+  <div class="stat-item"><div class="n">12+</div><div class="l">Years in Practice</div></div>
+  <div class="stat-item"><div class="n">99%</div><div class="l">Patient Satisfaction</div></div>
+  <div class="stat-item"><div class="n">5.0 ★</div><div class="l">Google Rating</div></div>
+</div>
+
+<section class="team">
+  <h2>Our Caring Team</h2>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-av">👩‍⚕️</div><div class="team-name">Dr. Naz</div><div class="team-role">Lead Dentist & Founder</div></div>
+    <div class="team-card"><div class="team-av">🧑‍⚕️</div><div class="team-name">Dr. Ali</div><div class="team-role">Orthodontics Specialist</div></div>
+    <div class="team-card"><div class="team-av">👩‍⚕️</div><div class="team-name">Sara K.</div><div class="team-role">Dental Hygienist</div></div>
+  </div>
+</section>
+
+<section class="values">
+  <h2>What We Stand For</h2>
+  <div class="val-grid">
+    <div class="val-card"><div class="val-icon">💛</div><h3>Genuine Care</h3><p>We treat every patient like family — with warmth, patience, and real compassion for your needs.</p></div>
+    <div class="val-card"><div class="val-icon">🔬</div><h3>Modern Techniques</h3><p>We invest in the latest dental technology to ensure faster, safer, and more comfortable treatments.</p></div>
+    <div class="val-card"><div class="val-icon">🤝</div><h3>Honest Pricing</h3><p>No hidden fees. No surprises. We always explain all costs clearly before any treatment begins.</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Ready to meet the team?</h2>
+  <p>Book your first appointment today — new patients are always welcome.</p>
+  <a href="booking.html" class="btn-white">Book an Appointment →</a>
+</section>
+
+<footer>
+  <div class="foot-brand">Dentistry <span>by Naz</span></div>
+  <div>
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="booking.html">Book Now</a>
+  </div>
+</footer>
+<a href="https://wa.me/15550123456" target="_blank" class="wa-btn">💬</a>
+</body>
+</html>
