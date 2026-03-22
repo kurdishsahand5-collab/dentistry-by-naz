@@ -1,1 +1,206 @@
+<!DOCTYPE html>
 
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دەربارە – کلینیکی ددانی ناز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--cream:#f0f7ff;--blush:#daeeff;--peach:#a8d4f0;--terra:#2a7fc1;--brown:#1a5a8a;--dark:#0d2d4a;--sage:#4a9ec4;--sage-l:#c5e4f5;--mid:#2b5f84;--light:#5a8aaa;--white:#ffffff;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
+
+```
+.lang-switch{display:flex;align-items:center;background:var(--blush);border-radius:50px;padding:4px 5px;border:1.5px solid var(--peach);}
+.lang-btn{padding:6px 14px;border-radius:50px;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--mid);transition:all 0.2s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}
+.lang-btn.active{background:var(--terra);color:white !important;box-shadow:0 2px 8px rgba(42,127,193,0.3);}
+.lang-btn:hover:not(.active){background:var(--sage-l);}
+
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(240,247,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
+.logo span{color:var(--terra);font-style:italic;}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;flex-direction:row-reverse;}
+.nav-links a{text-decoration:none;font-size:0.88rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--terra);}
+.nav-cta{background:var(--terra);color:white !important;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:var(--brown);}
+.nav-right{display:none;align-items:center;gap:10px;}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
+.mobile-close{position:absolute;top:24px;left:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
+
+.page-hero{padding:140px 48px 80px;background:linear-gradient(135deg,var(--blush),var(--cream));text-align:center;}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--dark);margin-bottom:16px;}
+.page-hero p{color:var(--mid);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.7;}
+
+.about-main{padding:80px 48px;display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:center;max-width:1100px;margin:0 auto;}
+.about-visual{position:relative;}
+.doc-img{width:100%;height:440px;border-radius:120px 120px 80px 80px;background:linear-gradient(160deg,var(--blush),var(--peach));display:flex;align-items:center;justify-content:center;font-size:8rem;}
+.doc-badge{position:absolute;bottom:20px;left:-16px;background:var(--brown);color:white;border-radius:20px;padding:16px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+.doc-badge-n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;display:block;}
+.doc-badge-l{font-size:0.72rem;opacity:0.75;margin-top:2px;display:block;}
+.about-text h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--dark);margin-bottom:18px;line-height:1.2;}
+.about-text p{color:var(--mid);font-size:0.95rem;line-height:1.85;margin-bottom:16px;}
+.quals{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0;}
+.qual{background:var(--sage-l);color:var(--brown);font-size:0.8rem;font-weight:600;padding:7px 14px;border-radius:50px;}
+
+.stats-band{background:var(--dark);padding:60px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+.stat-item .n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--terra);}
+.stat-item .l{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:4px;}
+
+.team{padding:80px 48px;background:var(--white);}
+.team h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--dark);text-align:center;margin-bottom:48px;}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:900px;margin:0 auto;}
+.team-card{text-align:center;}
+.team-av{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--blush),var(--peach));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--dark);margin-bottom:4px;}
+.team-role{font-size:0.8rem;color:var(--light);font-weight:500;}
+
+.values{padding:80px 48px;background:linear-gradient(135deg,var(--blush),var(--cream));}
+.values h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--dark);text-align:center;margin-bottom:48px;}
+.val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto;}
+.val-card{background:var(--white);border-radius:24px;padding:32px;text-align:center;}
+.val-icon{font-size:2.2rem;margin-bottom:16px;}
+.val-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:10px;}
+.val-card p{font-size:0.87rem;color:var(--light);line-height:1.7;}
+
+.cta-band{padding:80px 48px;text-align:center;background:var(--terra);}
+.cta-band h2{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:white;margin-bottom:16px;}
+.cta-band p{color:rgba(255,255,255,0.8);margin-bottom:32px;font-size:1rem;}
+.btn-white{background:white;color:var(--terra);padding:14px 32px;border-radius:50px;font-weight:700;font-size:0.95rem;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+
+footer{background:#051828;color:rgba(255,255,255,0.5);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
+.foot-brand span{color:var(--terra);font-style:italic;}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin-right:24px;transition:color 0.2s;}
+footer a:hover{color:var(--terra);}
+.wa-btn{position:fixed;bottom:28px;left:28px;z-index:500;background:#25d366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;transition:all 0.3s;}
+.wa-btn:hover{transform:scale(1.1);}
+
+@media(max-width:900px){
+  nav{padding:16px 20px;}.nav-links{display:none;}.nav-right{display:flex;}
+  .page-hero{padding:110px 20px 60px;}.page-hero h1{font-size:2.5rem;}
+  .about-main{grid-template-columns:1fr;padding:60px 20px;gap:40px;}
+  .stats-band{grid-template-columns:repeat(2,1fr);padding:48px 20px;}
+  .team{padding:60px 20px;}.team-grid{grid-template-columns:1fr;}
+  .values{padding:60px 20px;}.val-grid{grid-template-columns:1fr;}
+  .cta-band{padding:60px 20px;}
+  footer{flex-direction:column;gap:16px;padding:24px 20px;text-align:center;}
+  footer a{margin:0 8px;}
+}
+```
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index-ckb.html" class="logo">کلینیکی ددانی <span>ناز</span></a>
+  <ul class="nav-links">
+    <li>
+      <div class="lang-switch">
+        <a href="about.html" class="lang-btn">EN</a>
+        <span class="lang-btn active">کو</span>
+      </div>
+    </li>
+    <li><a href="booking-ckb.html" class="nav-cta">نۆرە بگرە</a></li>
+    <li><a href="contact-ckb.html">پەیوەندی</a></li>
+    <li><a href="about-ckb.html" class="active">دەربارە</a></li>
+    <li><a href="gallery-ckb.html">گەلەری</a></li>
+    <li><a href="services-ckb.html">خزمەتگوزارییەکان</a></li>
+    <li><a href="index-ckb.html">سەرەکی</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <a href="about.html" class="lang-btn">EN</a>
+      <span class="lang-btn active">کو</span>
+    </div>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="index-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">سەرەکی</a>
+  <a href="services-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">خزمەتگوزارییەکان</a>
+  <a href="gallery-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">گەلەری</a>
+  <a href="about-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">دەربارە</a>
+  <a href="contact-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">پەیوەندی</a>
+  <a href="booking-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">نۆرە بگرە</a>
+</div>
+
+<div class="page-hero">
+  <div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.85rem;font-weight:600;padding:7px 16px;border-radius:50px;margin-bottom:20px;">دەربارەی ئێمە</div>
+  <h1>ئەو دڵەی لە پشت خەندەکانەوەیە</h1>
+  <p>ئێمە زیاترین لە کلینیکێکی ددان — تیمێکین کە بەڕاستی گرنگی بە تەندروستی و ئارامیتان دەدەین.</p>
+</div>
+
+<div class="about-main">
+  <div class="about-visual">
+    <div class="doc-img">👩‍⚕️</div>
+    <div class="doc-badge"><span class="doc-badge-n">دکتۆرە ناز</span><span class="doc-badge-l">BDS · MSc · 12 ساڵ ئەزموون</span></div>
+  </div>
+  <div class="about-text">
+    <div style="display:inline-block;font-size:0.85rem;font-weight:600;color:var(--sage);margin-bottom:12px;">ئاشنابە بە دکتۆرەکەمان</div>
+    <h2>پەرۆشی خەندەکەتین لە ساڵی 2012ـەوە</h2>
+    <p>دکتۆرە ناز ئەم کلینیکەی دامەزراند بە مەبەستێکی سادە: بۆ ئەوەی چاودێری ددانی کوالێتی بەرز بەردەست، ئارام، و تەنانەت چێژبەخش بێت. دوای تەواوکردنی بڕوانامەی ددانسازی و ماستەر لە ددانسازی جوانکاری، چەندین ساڵی بەسەربرد لە بەرەوپێشبردنی ڕێبازێکی تایبەت کە نەخۆش دەخاتە پێشەوە و ئارامی لە سەرووی هەموو شتێکەوە دادەنێت.</p>
+    <p>ئەو بە توندی باوەڕی وایە کە خەندەیەکی تەندروست ژیان دەگۆڕێت — وە تەرخانکراوە بۆ یارمەتیدانی هەموو نەخۆشێک بۆ بەدەستهێنانی ئەو متمانەیەی لەگەڵیدا دێت.</p>
+    <div class="quals">
+      <span class="qual">بڕوانامەی بەکالۆریۆس BDS</span>
+      <span class="qual">ماستەر لە جوانکاری ددان</span>
+      <span class="qual">بڕوانامەی ئینڤیزەلایین</span>
+      <span class="qual">پسپۆڕی چاندنی ددان</span>
+      <span class="qual">ڕاهێنراو بۆ ددانسازی منداڵان</span>
+    </div>
+    <a href="booking-ckb.html" style="background:var(--terra);color:white;padding:12px 28px;border-radius:50px;font-weight:600;font-size:0.9rem;text-decoration:none;display:inline-block;">نۆرە بگرە لەلای دکتۆرە ناز ←</a>
+  </div>
+</div>
+
+<div class="stats-band">
+  <div class="stat-item"><div class="n">+3,000</div><div class="l">نەخۆشی ڕازی</div></div>
+  <div class="stat-item"><div class="n">+12</div><div class="l">ساڵ ئەزموون</div></div>
+  <div class="stat-item"><div class="n">99%</div><div class="l">ڕازیبوونی نەخۆش</div></div>
+  <div class="stat-item"><div class="n">5.0 ★</div><div class="l">هەڵسەنگاندنی گوگڵ</div></div>
+</div>
+
+<section class="team">
+  <h2>تیمە خەمخۆرەکەمان</h2>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-av">👩‍⚕️</div><div class="team-name">دکتۆرە ناز</div><div class="team-role">سەرپەرشتیاری پزیشکان و دامەزرێنەر</div></div>
+    <div class="team-card"><div class="team-av">🧑‍⚕️</div><div class="team-name">دکتۆر عەلی</div><div class="team-role">پسپۆڕی ڕاستکردنەوەی ددان</div></div>
+    <div class="team-card"><div class="team-av">👩‍⚕️</div><div class="team-name">سارا ک.</div><div class="team-role">پسپۆڕی پاکوخاوێنی ددان</div></div>
+  </div>
+</section>
+
+<section class="values">
+  <h2>ئەوەی ئێمە نوێنەرایەتی دەکەین</h2>
+  <div class="val-grid">
+    <div class="val-card"><div class="val-icon">💛</div><h3>خەمخۆری ڕاستەقینە</h3><p>وەک خێزان مامەڵە لەگەڵ هەموو نەخۆشێک دەکەین — بە گەرموگوڕی، ئارامگری، و سۆزی ڕاستەقینە بۆ پێداویستییەکانتان.</p></div>
+    <div class="val-card"><div class="val-icon">🔬</div><h3>تەکنیکی مۆدێرن</h3><p>وەبەرهێنان لە نوێترین تەکنەلۆجیای ددان دەکەین بۆ دڵنیابوون لە چارەسەری خێراتر، سەلامەتتر، و ئارامتر.</p></div>
+    <div class="val-card"><div class="val-icon">🤝</div><h3>نرخی ڕاستگۆیانە</h3><p>هیچ تێچوویەکی شاراوە نییە. هیچ سوپڕایزێک نییە. هەمیشە هەموو تێچووەکان بە ڕوونی ڕووندەکەینەوە پێش دەستپێکردنی هەر چارەسەرێک.</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>ئامادەی بۆ بینینی تیمەکەمان؟</h2>
+  <p>یەکەم نۆرەت ئەمڕۆ بگرە — هەمیشە پێشوازی لە نەخۆشی نوێ دەکەین.</p>
+  <a href="booking-ckb.html" class="btn-white">نۆرە بگرە ←</a>
+</section>
+
+<footer>
+  <div class="foot-brand">کلینیکی ددانی <span>ناز</span></div>
+  <div>
+    <a href="index-ckb.html">سەرەکی</a>
+    <a href="services-ckb.html">خزمەتگوزارییەکان</a>
+    <a href="contact-ckb.html">پەیوەندی</a>
+    <a href="booking-ckb.html">نۆرە بگرە</a>
+  </div>
+</footer>
+<a href="https://wa.me/15550123456" target="_blank" class="wa-btn">💬</a>
+</body>
+</html>
