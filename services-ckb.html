@@ -1,96 +1,119 @@
 <!DOCTYPE html>
+
 <html lang="ckb" dir="rtl">
 <head>
   <meta charset="UTF-8"/>
-  <script src="lang.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>خزمەتگوزارییەکان – کلینیکی ددانی ناز</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root{--cream:#fdf8f2;--blush:#f5e6d8;--peach:#e8c4a0;--terra:#c47d5a;--brown:#7a4f35;--dark:#2e1f12;--sage:#8dab99;--sage-l:#c8ddd4;--mid:#6b4f3a;--light:#9a7a68;--white:#ffffff;}
+    :root{--cream:#f0f7ff;--blush:#daeeff;--peach:#a8d4f0;--terra:#2a7fc1;--brown:#1a5a8a;--dark:#0d2d4a;--sage:#4a9ec4;--sage-l:#c5e4f5;--mid:#2b5f84;--light:#5a8aaa;--white:#ffffff;}
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
-    nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(253,248,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
-    .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
-    .logo span{color:var(--terra);font-style:italic;}
-    .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
-    .nav-links a{text-decoration:none;font-size:0.88rem;font-weight:600;color:var(--mid);transition:color 0.2s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--terra);}
-    .nav-cta{background:var(--terra);color:white;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
-    .mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
-    .mobile-menu.open{display:flex;}
-    .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
-    .mobile-close{position:absolute;top:24px;left:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
+.lang-switch{display:flex;align-items:center;background:var(--blush);border-radius:50px;padding:4px 5px;border:1.5px solid var(--peach);}
+.lang-btn{padding:6px 14px;border-radius:50px;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--mid);transition:all 0.2s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}
+.lang-btn.active{background:var(--terra);color:white !important;box-shadow:0 2px 8px rgba(42,127,193,0.3);}
+.lang-btn:hover:not(.active){background:var(--sage-l);}
 
-    .page-hero{padding:140px 48px 80px;background:linear-gradient(135deg,var(--blush),var(--cream));text-align:center;}
-    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--dark);margin-bottom:16px;}
-    .page-hero p{color:var(--mid);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.7;}
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(240,247,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
+.logo span{color:var(--terra);font-style:italic;}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;flex-direction:row-reverse;}
+.nav-links a{text-decoration:none;font-size:0.88rem;font-weight:600;color:var(--mid);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--terra);}
+.nav-cta{background:var(--terra);color:white !important;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:var(--brown);transform:translateY(-1px);}
+.nav-right{display:none;align-items:center;gap:10px;}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
+.mobile-close{position:absolute;top:24px;left:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
 
-    .services-full{padding:80px 48px;max-width:1200px;margin:0 auto;}
-    .svc-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--blush);}
-    .svc-row:last-child{border-bottom:none;}
-    /* Adjusted for RTL Layout */
-    .svc-row.reverse{direction:ltr;}
-    .svc-row.reverse > *{direction:rtl;}
-    
-    .svc-visual{background:linear-gradient(135deg,var(--blush),var(--peach));border-radius:32px;height:320px;display:flex;align-items:center;justify-content:center;font-size:6rem;}
-    .svc-info h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--dark);margin-bottom:14px;}
-    .svc-info p{color:var(--mid);font-size:0.95rem;line-height:1.8;margin-bottom:20px;}
-    .svc-includes{list-style:none;margin-bottom:24px;}
-    .svc-includes li{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--mid);margin-bottom:10px;}
-    .svc-includes li::before{content:'✓';color:var(--terra);font-weight:700;}
-    .price-tag{display:inline-block;background:var(--blush);color:var(--brown);font-weight:600;font-size:0.9rem;padding:8px 18px;border-radius:50px;margin-bottom:20px;}
-    .btn-fill{background:var(--terra);color:white;padding:12px 28px;border-radius:50px;font-weight:600;font-size:0.9rem;text-decoration:none;display:inline-block;transition:all 0.2s;}
-    .btn-fill:hover{background:var(--brown);transform:translateY(-2px);}
+.page-hero{padding:140px 48px 80px;background:linear-gradient(135deg,var(--blush),var(--cream));text-align:center;}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--dark);margin-bottom:16px;}
+.page-hero p{color:var(--mid);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.7;}
 
-    footer{background:#1a0f08;color:rgba(255,255,255,0.5);padding:32px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
-    .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
-    .foot-brand span{color:var(--terra);font-style:italic;}
-    footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin-right:24px;transition:color 0.2s;}
-    footer a:hover{color:var(--terra);}
+.services-full{padding:80px 48px;max-width:1200px;margin:0 auto;}
+.svc-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--blush);}
+.svc-row:last-child{border-bottom:none;}
+.svc-row.reverse{direction:ltr;}
+.svc-row.reverse > *{direction:rtl;}
+.svc-visual{background:linear-gradient(135deg,var(--blush),var(--peach));border-radius:32px;height:320px;display:flex;align-items:center;justify-content:center;font-size:6rem;}
+.svc-info h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--dark);margin-bottom:14px;}
+.svc-info p{color:var(--mid);font-size:0.95rem;line-height:1.8;margin-bottom:20px;}
+.svc-includes{list-style:none;margin-bottom:24px;}
+.svc-includes li{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--mid);margin-bottom:10px;}
+.
+[3/22/2026 3:53 AM] Sahand: svc-includes li::before{content:'✓';color:var(--terra);font-weight:700;}
+.price-tag{display:inline-block;background:var(--blush);color:var(--brown);font-weight:600;font-size:0.9rem;padding:8px 18px;border-radius:50px;margin-bottom:20px;}
+.btn-fill{background:var(--terra);color:white;padding:12px 28px;border-radius:50px;font-weight:600;font-size:0.9rem;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-fill:hover{background:var(--brown);transform:translateY(-2px);}
 
-    .wa-btn{position:fixed;bottom:28px;left:28px;z-index:500;background:#25d366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;transition:all 0.3s;}
-    .wa-btn:hover{transform:scale(1.1);}
+footer{background:#051828;color:rgba(255,255,255,0.5);padding:32px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
+.foot-brand span{color:var(--terra);font-style:italic;}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin-right:24px;transition:color 0.2s;}
+footer a:hover{color:var(--terra);}
 
-    @media(max-width:900px){
-      nav{padding:16px 20px;}
-      .nav-links{display:none;}
-      .hamburger{display:flex;}
-      .page-hero{padding:110px 20px 60px;}
-      .page-hero h1{font-size:2.5rem;}
-      .services-full{padding:60px 20px;}
-      .svc-row{grid-template-columns:1fr;gap:28px;}
-      .svc-row.reverse{direction:rtl;}
-      footer{flex-direction:column;gap:16px;padding:28px 20px;text-align:center;}
-      footer a{margin:0 8px;}
-    }
+.wa-btn{position:fixed;bottom:28px;left:28px;z-index:500;background:#25d366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;transition:all 0.3s;}
+.wa-btn:hover{transform:scale(1.1);}
+
+@media(max-width:900px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  .nav-right{display:flex;}
+  .page-hero{padding:110px 20px 60px;}
+  .page-hero h1{font-size:2.5rem;}
+  .services-full{padding:60px 20px;}
+  .svc-row{grid-template-columns:1fr;gap:28px;}
+  .svc-row.reverse{direction:rtl;}
+  footer{flex-direction:column;gap:16px;padding:28px 20px;text-align:center;}
+  footer a{margin:0 8px;}
+}
+
   </style>
 </head>
 <body>
 <nav>
   <a href="index-ckb.html" class="logo">کلینیکی ددانی <span>ناز</span></a>
   <ul class="nav-links">
-    <li><a href="index-ckb.html">سەرەکی</a></li>
-    <li><a href="services-ckb.html" class="active">خزمەتگوزارییەکان</a></li>
-    <li><a href="gallery-ckb.html">گەلەری</a></li>
-    <li><a href="about-ckb.html">دەربارە</a></li>
-    <li><a href="contact-ckb.html">پەیوەندی</a></li>
+    <li>
+      <div class="lang-switch">
+        <a href="services.html" class="lang-btn">EN</a>
+        <span class="lang-btn active">کو</span>
+      </div>
+    </li>
     <li><a href="booking-ckb.html" class="nav-cta">نۆرە بگرە</a></li>
-    <li><a href="services.html" style="color:var(--brown); font-weight: bold;">English</a></li>
+    <li><a href="contact-ckb.html">پەیوەندی</a></li>
+    <li><a href="about-ckb.html">دەربارە</a></li>
+    <li><a href="gallery-ckb.html">گەلەری</a></li>
+    <li><a href="services-ckb.html" class="active">خزمەتگوزارییەکان</a></li>
+    <li><a href="index-ckb.html">سەرەکی</a></li>
   </ul>
-  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <a href="services.html" class="lang-btn">EN</a>
+      <span class="lang-btn active">کو</span>
+    </div>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 <div class="mobile-menu">
   <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
-  <a href="index-ckb.html">سەرەکی</a><a href="services-ckb.html">خزمەتگوزارییەکان</a><a href="gallery-ckb.html">گەلەری</a><a href="about-ckb.html">دەربارە</a><a href="contact-ckb.html">پەیوەندی</a><a href="booking-ckb.html">نۆرە بگرە</a><a href="services.html">English</a>
+  <a href="index-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">سەرەکی</a>
+  <a href="services-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">خزمەتگوزارییەکان</a>
+  <a href="gallery-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">گەلەری</a>
+  <a href="about-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">دەربارە</a>
+  <a href="contact-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">پەیوەندی</a>
+  <a href="booking-ckb.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">نۆرە بگرە</a>
 </div>
 
 <div class="page-hero">
-  <div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:20px;">خزمەتگوزارییەکانمان</div>
+  <div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.85rem;font-weight:600;padding:7px 16px;border-radius:50px;margin-bottom:20px;">خزمەتگوزارییەکانمان</div>
   <h1>هەموو ئەوەی خەندەکەت پێویستی پێیەتی</h1>
   <p>لە چاودێری ئاساییەوە تا گۆڕانکاری تەواوەتی — کۆمەڵەیەکی تەواو لە خزمەتگوزاری ددانی ئارام بۆ هەموو تەمەنەکان پێشکەش دەکەین.</p>
 </div>
@@ -99,7 +122,7 @@
   <div class="svc-row">
     <div class="svc-visual">🪥</div>
     <div class="svc-info">
-      <span class="price-tag">دەستپێک لە 80$ بۆ هەر سەردانێک</span>
+[3/22/2026 3:53 AM] Sahand: <span class="price-tag">دەستپێک لە 80$ بۆ هەر سەردانێک</span>
       <h2>ددانسازی گشتی</h2>
       <p>بناغەی خەندەیەکی تەندروست. خزمەتگوزارییە گشتییەکانمان نەخشێنراون بۆ ڕێگریکردن لە کێشەکان پێش دروستبوونیان و هێشتنەوەی ددانەکانت بە بەهێزی بۆ هەموو تەمەنت.</p>
       <ul class="svc-includes">
@@ -195,7 +218,8 @@
         <li>کەوتنی پڕکردنەوە یان بەرگ (کراون)</li>
         <li>ئاوسان و هەوکردن</li>
       </ul>
-      <a href="contact-ckb.html" class="btn-fill">ئێستا پەیوەندیمان پێوە بکە ←</a>
+      <a href="contact-ckb.
+[3/22/2026 3:53 AM] Sahand: html" class="btn-fill">ئێستا پەیوەندیمان پێوە بکە ←</a>
     </div>
   </div>
 </div>
@@ -212,5 +236,6 @@
 </footer>
 
 <a href="https://wa.me/15550123456" target="_blank" class="wa-btn">💬</a>
+
 </body>
 </html>
