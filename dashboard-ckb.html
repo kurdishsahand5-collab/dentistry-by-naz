@@ -1,1 +1,324 @@
+<!DOCTYPE html>
 
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>داشبۆرد – کلینیکی ددانی ناز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{--cream:#f0f7ff;--blush:#daeeff;--peach:#a8d4f0;--terra:#2a7fc1;--brown:#1a5a8a;--dark:#0d2d4a;--sage:#4a9ec4;--sage-l:#c5e4f5;--mid:#2b5f84;--light:#5a8aaa;--white:#ffffff;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:#060f1a;color:var(--cream);min-height:100vh;}
+
+```
+/* LOGIN */
+.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:radial-gradient(ellipse at center,#0d2d4a 0%,#060f1a 100%);}
+.login-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:28px;padding:48px 40px;width:100%;max-width:420px;text-align:center;backdrop-filter:blur(20px);}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--cream);margin-bottom:6px;}
+.login-logo span{color:var(--terra);font-style:italic;}
+.login-sub{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:36px;}
+.login-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(74,158,196,0.2);color:var(--sage);font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:24px;}
+.lf{margin-bottom:16px;text-align:right;}
+.lf label{display:block;font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:7px;letter-spacing:0.5px;text-transform:uppercase;}
+.lf input{width:100%;padding:13px 16px;border:1.5px solid rgba(255,255,255,0.1);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--cream);background:rgba(255,255,255,0.05);outline:none;transition:all 0.2s;}
+.lf input:focus{border-color:var(--terra);background:rgba(255,255,255,0.08);}
+.login-btn{width:100%;padding:14px;background:var(--terra);color:white;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all 0.25s;margin-top:8px;}
+.login-btn:hover{background:var(--brown);transform:translateY(-1px);}
+.login-btn:disabled{background:rgba(42,127,193,0.4);cursor:not-allowed;transform:none;}
+.login-error{background:rgba(254,226,226,0.1);border:1px solid rgba(153,27,27,0.3);color:#fca5a5;border-radius:10px;padding:10px 14px;font-size:0.83rem;margin-top:10px;display:none;}
+.login-error.show{display:block;}
+.login-note{font-size:0.75rem;color:rgba(255,255,255,0.25);margin-top:20px;line-height:1.6;}
+
+/* DASHBOARD */
+.dashboard{display:none;}
+.dash-header{background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;}
+.dash-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);}
+.dash-logo span{color:var(--terra);font-style:italic;}
+.dash-user{display:flex;align-items:center;gap:12px;}
+.dash-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--peach),var(--terra));display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.dash-name{font-size:0.85rem;color:rgba(255,255,255,0.7);}
+.logout-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:none;padding:8px 16px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;transition:all 0.2s;}
+.logout-btn:hover{background:rgba(255,255,255,0.14);color:white;}
+
+.dash-body{padding:32px;}
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
+.stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:22px 20px;}
+.stat-card .label{font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:10px;}
+.stat-card .value{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--terra);}
+.stat-card .change{font-size:0.78rem;color:var(--sage);margin-top:4px;}
+
+.dash-filters{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.filter-chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:7px 16px;border-radius:50px;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.filter-chip:hover,.filter-chip.active{background:var(--terra);border-color:var(--terra);color:white;}
+
+.appointments-table{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;}
+.table-header{padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;}
+.table-title{font-size:1rem;font-weight:600;color:var(--cream);}
+.refresh-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:none;padding:7px 14px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;transition:all 0.2s;}
+.refresh-btn:hover{background:rgba(255,255,255,0.14);}
+table{width:100%;border-collapse:collapse;}
+thead th{padding:12px 20px;text-align:right;font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);border-bottom:1px solid rgba(255,255,255,0.06);}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.2s;}
+tbody tr:hover{background:rgba(255,255,255,0.04);}
+tbody tr:last-child{border-bottom:none;}
+td{padding:14px 20px;font-size:0.87rem;color:rgba(255,255,255,0.75);}
+td.name{color:var(--cream);font-weight:600;}
+td.service{color:var(--peach);}
+.status-badge{display:inline-block;padding:4px 12px;border-radius:50px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+.status-pending{background:rgba(245,166,35,0.15);color:#f5a623;}
+.status-confirmed{background:rgba(74,158,196,0.15);color:var(--sage);}
+.status-completed{background:rgba(42,127,193,0.15);color:var(--terra);}
+.status-cancelled{background:rgba(255,100,100,0.15);color:#ff6464;}
+.action-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:none;padding:5px 12px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.75rem;cursor:pointer;transition:all 0.2s;margin-left:4px;}
+.action-btn:hover{background:var(--terra);color:white;}
+.action-btn.confirm{background:rgba(74,158,196,0.15);color:var(--sage);}
+.action-btn.confirm:hover{background:var(--terra);color:white;}
+.loading{text-align:center;padding:48px;color:rgba(255,255,255,0.3);}
+.loading-spinner{font-size:2rem;animation:spin 1s linear infinite;display:block;margin-bottom:12px;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.empty-state{text-align:center;padding:56px 24px;}
+.empty-state .icon{font-size:3rem;margin-bottom:16px;}
+.empty-state p{color:rgba(255,255,255,0.3);font-size:0.9rem;}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:#0d2d4a;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:36px;max-width:480px;width:100%;position:relative;}
+.modal-close{position:absolute;top:16px;left:18px;background:none;border:none;color:rgba(255,255,255,0.4);font-size:1.3rem;cursor:pointer;}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--cream);margin-bottom:20px;}
+.modal-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.88rem;}
+.modal-row .key{color:rgba(255,255,255,0.4);}
+.modal-row .val{color:var(--cream);font-weight:500;text-align:left;max-width:60%;}
+.modal-actions{display:flex;gap:10px;margin-top:24px;}
+.modal-btn{flex:1;padding:11px;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.88rem;cursor:pointer;transition:all 0.2s;}
+.modal-btn.confirm{background:var(--terra);color:white;}
+.modal-btn.confirm:hover{background:var(--brown);}
+.modal-btn.cancel{background:rgba(255,100,100,0.15);color:#ff6464;}
+.modal-btn.cancel:hover{background:rgba(255,100,100,0.25);}
+
+@media(max-width:900px){
+  .dash-stats{grid-template-columns:repeat(2,1fr);}
+  .dash-body{padding:20px;}
+  .appointments-table{overflow-x:auto;}
+  table{min-width:700px;}
+}
+```
+
+  </style>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-badge">🔐 چوونەژوورەوەی پارێزراو</div>
+    <div class="login-logo">کلینیکی ددانی <span>ناز</span></div>
+    <div class="login-sub">داشبۆردی نۆرەکانی پزیشک</div>
+    <div class="lf"><label>ئیمەیڵ</label><input type="email" id="loginEmail" placeholder="doctor@dentistrybynaz.com" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="lf"><label>وشەی نهێنی</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">چوونەژوورەوە بۆ داشبۆرد ←</button>
+    <div class="login-error" id="loginError"></div>
+    <p class="login-note">🔒 ئەم داشبۆردە تەنها بۆ ستافی ڕێگەپێدراوی کلینیکە. هەموو داتایەک کۆدکراوە و پارێزراوە.</p>
+  </div>
+</div>
+
+<div class="dashboard" id="dashboard">
+  <div class="dash-header">
+    <div class="dash-logo">کلینیکی ددانی <span>ناز</span> <span style="font-size:0.75rem;color:rgba(255,255,255,0.3);font-family:'DM Sans',sans-serif;font-style:normal;margin-right:8px;">· داشبۆرد</span></div>
+    <div class="dash-user">
+      <div class="dash-avatar">👩‍⚕️</div>
+      <span class="dash-name" id="dashUserName">دکتۆرە ناز</span>
+      <button class="logout-btn" onclick="doLogout()">چوونەدەرەوە</button>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <div class="dash-stats" id="statsRow">
+      <div class="stat-card"><div class="label">کۆی نۆرەکان</div><div class="value" id="statTotal">–</div><div class="change">هەموو کاتێک</div></div>
+      <div class="stat-card"><div class="label">هەڵواسراو</div><div class="value" id="statPending">–</div><div class="change">پێویستی بە پشتڕاستکردنەوەیە</div></div>
+      <div class="stat-card"><div class="label">پشتڕاستکراوە</div><div class="value" id="statConfirmed">–</div><div class="change">ئامادەیە</div></div>
+      <div class="stat-card"><div class="label">ئەمڕۆ</div><div class="value" id="statToday">–</div><div class="change">نۆرەکانی ئەمڕۆ</div></div>
+    </div>
+
+```
+<div class="dash-filters">
+  <button class="filter-chip active" onclick="filterAppts('all',this)">هەموو نۆرەکان</button>
+  <button class="filter-chip" onclick="filterAppts('pending',this)">⏳ هەڵواسراو</button>
+  <button class="filter-chip" onclick="filterAppts('confirmed',this)">✅ پشتڕاستکراوە</button>
+  <button class="filter-chip" onclick="filterAppts('completed',this)">🏁 تەواوبووە</button>
+  <button class="filter-chip" onclick="filterAppts('cancelled',this)">❌ هەڵوەشاوەتەوە</button>
+</div>
+
+<div class="appointments-table">
+  <div class="table-header">
+    <div class="table-title">📅 نۆرەکان</div>
+    <button class="refresh-btn" onclick="loadAppointments()">↻ نوێکردنەوە</button>
+  </div>
+  <div id="tableBody">
+    <div class="loading"><span class="loading-spinner">⏳</span>لە بارکردندایە...</div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>وردەکاری نۆرە</h3>
+    <div id="modalContent"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL='https://cnvurcbfdyjriiwsqhgp.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNudnVyY2JmZHlqcmlpd3NxaGdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxMTU1NDIsImV4cCI6MjA4OTY5MTU0Mn0.AUEhyX3AnTecZ8-TKCsoA3mD4I57c1xM5HTD-v4n128';
+const{createClient}=supabase;
+const db=createClient(SUPABASE_URL,SUPABASE_KEY);
+
+let allAppointments=[];
+let currentFilter='all';
+
+async function doLogin(){
+  const email=document.getElementById('loginEmail').value.trim();
+  const pass=document.getElementById('loginPass').value;
+  const errEl=document.getElementById('loginError');
+  const btn=document.getElementById('loginBtn');
+  if(!email||!pass){errEl.textContent='تکایە ئیمەیڵ و وشەی نهێنی بنووسە.';errEl.classList.add('show');return;}
+  btn.disabled=true;btn.textContent='چوونەژوورەوە...';errEl.classList.remove('show');
+  try{
+    const{data,error}=await db.auth.signInWithPassword({email,password:pass});
+    if(error)throw error;
+    document.getElementById('dashUserName').textContent=data.user.email.split('@')[0];
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    loadAppointments();
+  }catch(err){
+    errEl.textContent='ئیمەیڵ یان وشەی نهێنی هەڵەیە. تکایە دووبارە هەوڵبدەرەوە.';
+    errEl.classList.add('show');
+    btn.disabled=false;btn.textContent='چوونەژوورەوە بۆ داشبۆرد ←';
+  }
+}
+
+async function doLogout(){
+  await db.auth.signOut();
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('loginPass').value='';
+}
+
+async function loadAppointments(){
+  document.getElementById('tableBody').innerHTML='<div class="loading"><span class="loading-spinner">⏳</span>لە بارکردندایە...</div>';
+  try{
+    const{data,error}=await db.from('appointments').select('*').order('created_at',{ascending:false});
+    if(error)throw error;
+    allAppointments=data||[];
+    updateStats();
+    renderTable(allAppointments);
+  }catch(err){
+    document.getElementById('tableBody').innerHTML='<div class="empty-state"><div class="icon">⚠️</div><p>نەتوانرا نۆرەکان باربکرێت. هێڵی ئینتەرنێتەکەت بپشکنە.</p></div>';
+  }
+}
+
+function updateStats(){
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('statTotal').textContent=allAppointments.length;
+  document.getElementById('statPending').textContent=allAppointments.filter(a=>a.status==='pending').length;
+  document.getElementById('statConfirmed').textContent=allAppointments.filter(a=>a.status==='confirmed').length;
+  document.getElementById('statToday').textContent=allAppointments.filter(a=>a.preferred_date===today).length;
+}
+
+function filterAppts(filter,btn){
+  currentFilter=filter;
+  document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered=filter==='all'?allAppointments:allAppointments.filter(a=>a.status===filter);
+  renderTable(filtered);
+}
+
+const statusTranslations={
+  'pending':'هەڵواسراو',
+  'confirmed':'پشتڕاستکراوە',
+  'completed':'تەواوبووە',
+  'cancelled':'هەڵوەشاوەتەوە'
+};
+
+function renderTable(data){
+  if(!data||data.length===0){
+    document.getElementById('tableBody').innerHTML='<div class="empty-state"><div class="icon">📭</div><p>هیچ نۆرەیەک نەدۆزرایەوە.</p></div>';
+    return;
+  }
+  let html=`<table><thead><tr><th>نەخۆش</th><th>خزمەتگوزاری</th><th>بەروار و کات</th><th>تەلەفۆن</th><th>دۆخ</th><th>کردارەکان</th></tr></thead><tbody>`;
+  data.forEach(a=>{
+    const date=new Date(a.preferred_date+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const statusClass='status-'+a.status;
+    const displayStatus=statusTranslations[a.status]||a.status;
+    html+=`<tr>
+      <td class="name">${a.first_name} ${a.last_name}</td>
+      <td class="service">${a.service}</td>
+      <td style="direction:ltr;text-align:right;">${date} · ${a.preferred_time}</td>
+      <td style="direction:ltr;text-align:right;">${a.phone}</td>
+      <td><span class="status-badge ${statusClass}">${displayStatus}</span></td>
+      <td>
+        <button class="action-btn" onclick="viewAppt('${a.id}')">بینین</button>
+        ${a.status==='pending'?`<button class="action-btn confirm" onclick="updateStatus('${a.id}','confirmed')">پشتڕاستکردنەوە</button>`:''}
+        ${a.status!=='cancelled'&&a.status!=='completed'?`<button class="action-btn" onclick="updateStatus('${a.id}','completed')">تەواوبوو</button>`:''}
+      </td>
+    </tr>`;
+  });
+  html+=`</tbody></table>`;
+  document.getElementById('tableBody').innerHTML=html;
+}
+
+function viewAppt(id){
+  const a=allAppointments.find(x=>x.id===id);
+  if(!a)return;
+  const date=new Date(a.preferred_date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  const displayStatus=statusTranslations[a.status]||a.status;
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-row"><span class="key">نەخۆش</span><span class="val">${a.first_name} ${a.last_name}</span></div>
+    <div class="modal-row"><span class="key">تەلەفۆن</span><span class="val" style="direction:ltr;">${a.phone}</span></div>
+    <div class="modal-row"><span class="key">ئیمەیڵ</span><span class="val">${a.email||'نەدراوە'}</span></div>
+    <div class="modal-row"><span class="key">خزمەتگوزاری</span><span class="val">${a.service}</span></div>
+    <div class="modal-row"><span class="key">بەروار</span><span class="val" style="direction:ltr;">${date}</span></div>
+    <div class="modal-row"><span class="key">کات</span><span class="val" style="direction:ltr;">${a.preferred_time}</span></div>
+    <div class="modal-row"><span class="key">یەکەم سەردان</span><span class="val">${a.first_visit||'نەزانراو'}</span></div>
+    <div class="modal-row"><span class="key">تێبینییەکان</span><span class="val">${a.notes||'نییە'}</span></div>
+    <div class="modal-row"><span class="key">دۆخ</span><span class="val"><span class="status-badge status-${a.status}">${displayStatus}</span></span></div>
+    <div class="modal-row"><span class="key">کاتی وەرگرتنی نۆرە</span><span class="val" style="direction:ltr;">${new Date(a.created_at).toLocaleString()}</span></div>
+  `;
+  document.getElementById('modalActions').innerHTML=`
+    ${a.status==='pending'?`<button class="modal-btn confirm" onclick="updateStatus('${a.id}','confirmed');closeModal()">✅ پشتڕاستکردنەوە</button>`:''}
+    ${a.status!=='cancelled'&&a.status!=='completed'?`<button class="modal-btn cancel" onclick="updateStatus('${a.id}','cancelled');closeModal()">❌ هەڵوەشاندنەوە</button>`:''}
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+
+async function updateStatus(id,status){
+  try{
+    const{error}=await db.from('appointments').update({status}).eq('id',id);
+    if(error)throw error;
+    const idx=allAppointments.findIndex(a=>a.id===id);
+    if(idx>-1)allAppointments[idx].status=status;
+    updateStats();
+    const filtered=currentFilter==='all'?allAppointments:allAppointments.filter(a=>a.status===currentFilter);
+    renderTable(filtered);
+  }catch(err){alert('نەتوانرا دۆخەکە نوێبکرێتەوە. دووبارە هەوڵبدەرەوە.');}
+}
+
+db.auth.getSession().then(({data:{session}})=>{
+  if(session){
+    document.getElementById('dashUserName').textContent=session.user.email.split('@')[0];
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    loadAppointments();
+  }
+});
+</script>
+
+</body>
+</html>
