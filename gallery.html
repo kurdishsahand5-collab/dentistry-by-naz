@@ -2,37 +2,37 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <script src="lang.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery – Dentistry by Naz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root{--cream:#fdf8f2;--blush:#f5e6d8;--peach:#e8c4a0;--terra:#c47d5a;--brown:#7a4f35;--dark:#2e1f12;--sage:#8dab99;--sage-l:#c8ddd4;--mid:#6b4f3a;--light:#9a7a68;--white:#ffffff;}
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
-    nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(253,248,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
-    .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
-    .logo span{color:var(--terra);font-style:italic;}
-    .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
-    .nav-links a{text-decoration:none;font-size:0.88rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--terra);}
-    .nav-cta{background:var(--terra);color:white;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;}
-    .lang-switcher{display:flex;align-items:center;background:var(--dark);border-radius:50px;padding:4px;gap:2px;}
-    .lang-btn{padding:6px 14px;border-radius:50px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s;color:rgba(255,255,255,0.5);}
-    .lang-btn.active{background:var(--terra);color:white;}
-    .lang-btn:hover{color:white;}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
-    .mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
-    .mobile-menu.open{display:flex;}
-    .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
-    .mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
-    .mobile-lang{display:flex;gap:12px;margin-top:8px;}
-    .mobile-lang a{font-family:'DM Sans',sans-serif;font-size:1rem;background:var(--blush);color:var(--brown);padding:8px 20px;border-radius:50px;text-decoration:none;font-weight:600;}
-    .mobile-lang a.active{background:var(--terra);color:white;}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gallery – Dentistry by Naz</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#f0f7ff;--blush:#daeeff;--peach:#a8d4f0;--terra:#2a7fc1;--brown:#1a5a8a;--dark:#0d2d4a;--sage:#4a9ec4;--sage-l:#c5e4f5;--mid:#2b5f84;--light:#5a8aaa;--white:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
 
 ```
+.lang-switch{display:flex;align-items:center;background:var(--blush);border-radius:50px;padding:4px 5px;border:1.5px solid var(--peach);}
+.lang-btn{padding:6px 14px;border-radius:50px;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--mid);transition:all 0.2s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}
+.lang-btn.active{background:var(--terra);color:white !important;box-shadow:0 2px 8px rgba(42,127,193,0.3);}
+.lang-btn:hover:not(.active){background:var(--sage-l);}
+
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(240,247,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--peach);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown);text-decoration:none;}
+.logo span{color:var(--terra);font-style:italic;}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;font-size:0.88rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--terra);}
+.nav-cta{background:var(--terra);color:white !important;padding:10px 22px;border-radius:50px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:var(--brown);}
+.nav-right{display:none;align-items:center;gap:10px;}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--cream);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown);text-decoration:none;}
+.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--brown);}
+
 .page-hero{padding:140px 48px 80px;background:linear-gradient(135deg,var(--blush),var(--cream));text-align:center;}
 .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--dark);margin-bottom:16px;}
 .page-hero p{color:var(--mid);font-size:1rem;max-width:480px;margin:0 auto;line-height:1.7;}
@@ -46,7 +46,7 @@
 .g-item{break-inside:avoid;margin-bottom:20px;border-radius:20px;overflow:hidden;cursor:pointer;position:relative;display:block;}
 .g-item img{width:100%;display:block;transition:transform 0.4s ease;object-fit:cover;}
 .g-item:hover img{transform:scale(1.05);}
-.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(46,31,18,0.75) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;border-radius:20px;display:flex;align-items:flex-end;padding:20px;}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,45,74,0.75) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;border-radius:20px;display:flex;align-items:flex-end;padding:20px;}
 .g-item:hover .g-overlay{opacity:1;}
 .g-caption{color:white;font-size:0.88rem;font-weight:600;}
 .g-sub{color:rgba(255,255,255,0.7);font-size:0.75rem;margin-top:2px;}
@@ -63,7 +63,7 @@
 .ba-label-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
 .ba-lbl{text-align:center;padding:8px;font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
 .ba-lbl.before{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);}
-.ba-lbl.after{background:rgba(141,171,153,0.2);color:var(--sage);}
+.ba-lbl.after{background:rgba(74,158,196,0.2);color:var(--sage);}
 .ba-caption{padding:16px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.6);}
 
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;padding:20px;}
@@ -78,7 +78,7 @@
 .cta-band p{color:rgba(255,255,255,0.8);margin-bottom:28px;}
 .btn-white{background:white;color:var(--terra);padding:14px 32px;border-radius:50px;font-weight:700;font-size:0.92rem;text-decoration:none;display:inline-block;}
 
-footer{background:#1a0f08;color:rgba(255,255,255,0.5);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
+footer{background:#051828;color:rgba(255,255,255,0.5);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
 .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
 .foot-brand span{color:var(--terra);font-style:italic;}
 footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin-left:24px;}
@@ -86,168 +86,172 @@ footer a:hover{color:var(--terra);}
 .wa-btn{position:fixed;bottom:28px;right:28px;z-index:500;background:#25d366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;}
 
 @media(max-width:900px){
-  nav{padding:16px 20px;}.nav-links{display:none;}.hamburger{display:flex;}
-  .page-hero{padding:110px 20px 60px;}.page-hero h1{font-size:2.4rem;}
-  .filter-bar{padding:28px 20px 0;}
-  .gallery-section{padding:28px 20px 60px;}.masonry{columns:2;}
-  .before-after{padding:60px 20px;}.ba-grid{grid-template-columns:1fr;}
-  .cta-band{padding:60px 20px;}
-  footer{flex-direction:column;gap:12px;padding:20px;text-align:center;}
-  footer a{margin:0 8px;}
+nav{padding:16px 20px;}.nav-links{display:none;}.nav-right{display:flex;}
+.page-hero{padding:110px 20px 60px;}.page-hero h1{font-size:2.4rem;}
+.filter-bar{padding:28px 20px 0;}
+.gallery-section{padding:28px 20px 60px;}.masonry{columns:2;}
+.before-after{padding:60px 20px;}.ba-grid{grid-template-columns:1fr;}
+.cta-band{padding:60px 20px;}
+footer{flex-direction:column;gap:12px;padding:20px;text-align:center;}
+footer a{margin:0 8px;}
 }
 ```
 
-  </style>
+</style>
 </head>
 <body>
 <nav>
-  <a href="index.html" class="logo">Dentistry <span>by Naz</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="gallery.html" class="active">Gallery</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="booking.html" class="nav-cta">Book Now</a></li>
-    <div class="lang-switcher">
-      <a href="gallery.html" class="lang-btn active">🇬🇧 EN</a>
-      <a href="gallery-ckb.html" class="lang-btn">🇮🇶 کوردی</a>
-    </div>
-  </ul>
-  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+<a href="index.html" class="logo">Dentistry <span>by Naz</span></a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="gallery.html" class="active">Gallery</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="booking.html" class="nav-cta">Book Now</a></li>
+<li>
+<div class="lang-switch">
+<span class="lang-btn active">EN</span>
+<a href="gallery-ckb.html" class="lang-btn">کو</a>
+</div>
+</li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch">
+<span class="lang-btn active">EN</span>
+<a href="gallery-ckb.html" class="lang-btn">کو</a>
+</div>
+<button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+</div>
 </nav>
 <div class="mobile-menu">
-  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="booking.html">Book Now</a>
-  <div class="mobile-lang">
-    <a href="gallery.html" class="active">🇬🇧 English</a>
-    <a href="gallery-ckb.html">🇮🇶 کوردی</a>
-  </div>
+<button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+<a href="index.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Home</a>
+<a href="services.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Services</a>
+<a href="gallery.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
+<a href="about.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+<a href="contact.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
+<a href="booking.html" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Book Now</a>
 </div>
 
 <div class="page-hero">
-  <div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:20px;">Gallery</div>
-  <h1>See our clinic & results</h1>
-  <p>A real look inside our warm, modern clinic and the smiles we've transformed.</p>
+<div style="display:inline-block;background:var(--sage-l);color:var(--brown);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:20px;">Gallery</div>
+<h1>See our clinic & results</h1>
+<p>A real look inside our warm, modern clinic and the smiles we've transformed.</p>
 </div>
 
 <div class="filter-bar">
-  <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
-  <button class="filter-btn" onclick="filterGallery('clinic',this)">Clinic</button>
-  <button class="filter-btn" onclick="filterGallery('team',this)">Team</button>
-  <button class="filter-btn" onclick="filterGallery('treatment',this)">Treatments</button>
-  <button class="filter-btn" onclick="filterGallery('smiles',this)">Smiles</button>
+<button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
+<button class="filter-btn" onclick="filterGallery('clinic',this)">Clinic</button>
+<button class="filter-btn" onclick="filterGallery('team',this)">Team</button>
+<button class="filter-btn" onclick="filterGallery('treatment',this)">Treatments</button>
+<button class="filter-btn" onclick="filterGallery('smiles',this)">Smiles</button>
 </div>
 
 <div class="gallery-section">
-  <div class="masonry" id="gallery">
-    <div class="g-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=800','Dr. Naz during a patient consultation')">
-      <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=600" alt="Dr. Naz" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Dr. Naz</div><div class="g-sub">Patient Consultation</div></div></div>
-    </div>
-    <div class="g-item" data-cat="clinic" onclick="openLightbox('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800','Our modern treatment room')">
-      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600" alt="Dental clinic" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Treatment Room</div><div class="g-sub">Modern & Comfortable</div></div></div>
-    </div>
-    <div class="g-item" data-cat="smiles" onclick="openLightbox('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800','Beautiful smile result')">
-      <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600" alt="Beautiful smile" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Happy Patient</div><div class="g-sub">After Smile Makeover</div></div></div>
-    </div>
-    <div class="g-item" data-cat="treatment" onclick="openLightbox('https://images.unsplash.com/photo-1588776814546-1ffbb2237e1a?w=800','Professional teeth whitening')">
-      <img src="https://images.unsplash.com/photo-1588776814546-1ffbb2237e1a?w=600" alt="Teeth whitening" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Teeth Whitening</div><div class="g-sub">Professional Treatment</div></div></div>
-    </div>
-    <div class="g-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800','Our caring dental team')">
-      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600" alt="Dental team" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Our Team</div><div class="g-sub">Always Here for You</div></div></div>
-    </div>
-    <div class="g-item" data-cat="clinic" onclick="openLightbox('https://images.unsplash.com/photo-1551076805-e1869033e561?w=800','Our welcoming reception area')">
-      <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=600" alt="Clinic reception" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Reception Area</div><div class="g-sub">Warm & Welcoming</div></div></div>
-    </div>
-    <div class="g-item" data-cat="treatment" onclick="openLightbox('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800','Dental examination')">
-      <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600" alt="Dental exam" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Check-up</div><div class="g-sub">Gentle & Thorough</div></div></div>
-    </div>
-    <div class="g-item" data-cat="smiles" onclick="openLightbox('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800','Perfect smile result')">
-      <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600" alt="Perfect smile" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Perfect Smile</div><div class="g-sub">Cosmetic Result</div></div></div>
-    </div>
-    <div class="g-item" data-cat="clinic" onclick="openLightbox('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800','State of the art equipment')">
-      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600" alt="Dental equipment" loading="lazy"/>
-      <div class="g-overlay"><div><div class="g-caption">Modern Equipment</div><div class="g-sub">Latest Technology</div></div></div>
-    </div>
-  </div>
+<div class="masonry" id="gallery">
+<div class="g-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=800','Dr. Naz during a patient consultation')">
+<img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=600" alt="Dr. Naz" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Dr. Naz</div><div class="g-sub">Patient Consultation</div></div></div>
+</div>
+<div class="g-item" data-cat="clinic" onclick="openLightbox('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800','Our modern treatment room')">
+<img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600" alt="Dental clinic" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Treatment Room</div><div class="g-sub">Modern & Comfortable</div></div></div>
+</div>
+<div class="g-item" data-cat="smiles" onclick="openLightbox('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800','Beautiful smile result')">
+<img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600" alt="Beautiful smile" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Happy Patient</div><div class="g-sub">After Smile Makeover</div></div></div>
+</div>
+<div class="g-item" data-cat="treatment" onclick="openLightbox('https://images.unsplash.com/photo-1588776814546-1ffbb2237e1a?w=800','Professional teeth whitening')">
+<img src="https://images.unsplash.com/photo-1588776814546-1ffbb2237e1a?w=600" alt="Teeth whitening" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Teeth Whitening</div><div class="g-sub">Professional Treatment</div></div></div>
+</div>
+<div class="g-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800','Our caring dental team')">
+<img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600" alt="Dental team" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Our Team</div><div class="g-sub">Always Here for You</div></div></div>
+</div>
+<div class="g-item" data-cat="clinic" onclick="openLightbox('https://images.unsplash.com/photo-1551076805-e1869033e561?w=800','Our welcoming reception area')">
+<img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=600" alt="Clinic reception" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Reception Area</div><div class="g-sub">Warm & Welcoming</div></div></div>
+</div>
+<div class="g-item" data-cat="treatment" onclick="openLightbox('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800','Dental examination')">
+<img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600" alt="Dental exam" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Check-up</div><div class="g-sub">Gentle & Thorough</div></div></div>
+</div>
+<div class="g-item" data-cat="smiles" onclick="openLightbox('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800','Perfect smile result')">
+<img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600" alt="Perfect smile" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Perfect Smile</div><div class="g-sub">Cosmetic Result</div></div></div>
+</div>
+<div class="g-item" data-cat="clinic" onclick="openLightbox('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800','State of the art equipment')">
+<img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600" alt="Dental equipment" loading="lazy"/>
+<div class="g-overlay"><div><div class="g-caption">Modern Equipment</div><div class="g-sub">Latest Technology</div></div></div>
+</div>
+</div>
 </div>
 
 <section class="before-after">
-  <h2 class="ba-title">Before & After Transformations</h2>
-  <p class="ba-sub">Real results from our patients — with their permission.</p>
-  <div class="ba-grid">
-    <div class="ba-card">
-      <div class="ba-imgs">
-        <div class="ba-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffbb2237e1a?w=400" alt="Before"/></div>
-        <div class="ba-img"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400" alt="After"/></div>
-      </div>
-      <div class="ba-label-row"><div class="ba-lbl before">Before</div><div class="ba-lbl after">After ✓</div></div>
-      <div class="ba-caption">Teeth Whitening — 6 shades brighter</div>
-    </div>
-    <div class="ba-card">
-      <div class="ba-imgs">
-        <div class="ba-img"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400" alt="Before"/></div>
-        <div class="ba-img"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400" alt="After"/></div>
-      </div>
-      <div class="ba-label-row"><div class="ba-lbl before">Before</div><div class="ba-lbl after">After ✓</div></div>
-      <div class="ba-caption">Porcelain Veneers — Complete makeover</div>
-    </div>
-    <div class="ba-card">
-      <div class="ba-imgs">
-        <div class="ba-img"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400" alt="Before"/></div>
-        <div class="ba-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400" alt="After"/></div>
-      </div>
-      <div class="ba-label-row"><div class="ba-lbl before">Before</div><div class="ba-lbl after">After ✓</div></div>
-      <div class="ba-caption">Clear Aligners — Straightened in 8 months</div>
-    </div>
-  </div>
+<h2 class="ba-title">Before & After Transformations</h2>
+<p class="ba-sub">Real results from our patients — with their permission.</p>
+<div class="ba-grid">
+<div class="ba-card">
+<div class="ba-imgs">
+<div class="ba-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffbb2237e1a?w=400" alt="Before"/></div>
+<div class="ba-img"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400" alt="After"/></div>
+</div>
+<div class="ba-label-row"><div class="ba-lbl before">Before</div><div class="ba-lbl after">After ✓</div></div>
+<div class="ba-caption">Teeth Whitening — 6 shades brighter</div>
+</div>
+<div class="ba-card">
+<div class="ba-imgs">
+<div class="ba-img"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400" alt="Before"/></div>
+<div class="ba-img"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400" alt="After"/></div>
+</div>
+<div class="ba-label-row"><div class="ba-lbl before">Before</div><div class="ba-lbl after">After ✓</div></div>
+<div class="ba-caption">Porcelain Veneers — Complete makeover</div>
+</div>
+<div class="ba-card">
+<div class="ba-imgs">
+<div class="ba-img"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400" alt="Before"/></div>
+<div class="ba-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400" alt="After"/></div>
+</div>
+<div class="ba-label-row"><div class="ba-lbl before">Before</div><div class="ba-lbl after">After ✓</div></div>
+<div class="ba-caption">Clear Aligners — Straightened in 8 months</div>
+</div>
+</div>
 </section>
 
 <section class="cta-band">
-  <h2>Love what you see?</h2>
-  <p>Book a consultation and let's talk about your smile goals.</p>
-  <a href="booking.html" class="btn-white">Book a Consultation →</a>
+<h2>Love what you see?</h2>
+<p>Book a consultation and let's talk about your smile goals.</p>
+<a href="booking.html" class="btn-white">Book a Consultation →</a>
 </section>
 
 <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-  <div class="lb-content">
-    <button class="lb-close" onclick="closeLightbox()">✕</button>
-    <img class="lb-img" id="lbImg" src="" alt=""/>
-    <p class="lb-caption" id="lbCaption"></p>
-  </div>
+<div class="lb-content">
+<button class="lb-close" onclick="closeLightbox()">✕</button>
+<img class="lb-img" id="lbImg" src="" alt=""/>
+<p class="lb-caption" id="lbCaption"></p>
+</div>
 </div>
 
 <footer>
-  <div class="foot-brand">Dentistry <span>by Naz</span></div>
-  <div><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="booking.html">Book Now</a></div>
+<div class="foot-brand">Dentistry <span>by Naz</span></div>
+<div><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="booking.html">Book Now</a></div>
 </footer>
 <a href="https://wa.me/15550123456" target="_blank" class="wa-btn">💬</a>
 
 <script>
 function filterGallery(cat,btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.g-item').forEach(item=>{
-    item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';
-  });
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+document.querySelectorAll('.g-item').forEach(item=>{
+item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';
+});
 }
 function openLightbox(src,caption){
-  document.getElementById('lbImg').src=src;
-  document.getElementById('lbCaption').textContent=caption;
-  document.getElementById('lightbox').classList.add('open');
+document.getElementById('lbImg').src=src;
+document.getElementById('lbCaption').textContent=caption;
+document.getElementById('lightbox').classList.add('open');
 }
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 </script>
